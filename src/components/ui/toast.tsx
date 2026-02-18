@@ -27,7 +27,6 @@ export const useToastStore = create<ToastState>((set) => ({
 
 export function Toaster(): React.ReactElement {
   const toasts = useToastStore((s) => s.toasts);
-  const remove = useToastStore((s) => s.remove);
 
   return (
     <div className="fixed bottom-4 right-4 z-[90] flex flex-col gap-2 pointer-events-none">

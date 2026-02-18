@@ -13,7 +13,7 @@ export interface BoardsState {
   reorderColumns: (boardId: BoardId, columnOrder: Board['columnOrder']) => void;
 }
 
-export const useBoardsStore = create<BoardsState>((set, get) => ({
+export const useBoardsStore = create<BoardsState>((set) => ({
   boards: {},
   activeBoardId: null,
 

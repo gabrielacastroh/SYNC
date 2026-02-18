@@ -16,7 +16,7 @@ export interface ColumnsState {
   hydrate: (columns: Record<ColumnId, Column>) => void;
 }
 
-export const useColumnsStore = create<ColumnsState>((set, get) => ({
+export const useColumnsStore = create<ColumnsState>((set) => ({
   columns: {},
 
   addColumn: (boardId: BoardId, title: string) => {

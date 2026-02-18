@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { X, Calendar, MessageSquare, User, Trash2 } from 'lucide-react';
-import type { Card as CardType, CardLabel, LabelColor } from '@/types';
+import type { CardLabel, LabelColor } from '@/types';
 import { useCardsStore, useColumnsStore, useActivityStore } from '@/store';
 import { useUIStore } from '@/store/ui';
 import { Button } from '@/components/ui/button';

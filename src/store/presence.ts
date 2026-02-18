@@ -19,7 +19,7 @@ export interface PresenceState {
 
 let colorIndex = 0;
 function nextColor(): string {
-  const color = AVATAR_COLORS[colorIndex % AVATAR_COLORS.length];
+  const color = AVATAR_COLORS[colorIndex % AVATAR_COLORS.length] ?? '#737373';
   colorIndex += 1;
   return color;
 }

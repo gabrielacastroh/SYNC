@@ -1,14 +1,7 @@
 import { produce } from 'immer';
 import { create } from 'zustand';
 import { v4 as uuid } from 'uuid';
-import type {
-  Card,
-  CardId,
-  ColumnId,
-  BoardId,
-  CardLabel,
-  LabelColor,
-} from '@/types';
+import type { Card, CardId, ColumnId, BoardId } from '@/types';
 
 export interface CardsState {
   cards: Record<CardId, Card>;
@@ -72,7 +65,7 @@ export const useCardsStore = create<CardsState>((set, get) => ({
     );
   },
 
-  moveCard: (cardId: CardId, targetColumnId: ColumnId, index: number) => {
+  moveCard: (cardId: CardId, targetColumnId: ColumnId, _index: number) => {
     const card = get().cards[cardId];
     if (!card) return;
     const fromColumnId = card.columnId;

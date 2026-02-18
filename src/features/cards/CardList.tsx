@@ -20,7 +20,7 @@ export function CardList({ columnId, boardId }: CardListProps): React.ReactEleme
     () =>
       cardOrder
         .map((id) => cards[id])
-        .filter(Boolean),
+        .filter((c): c is NonNullable<typeof c> => c != null),
     [cardOrder, cards]
   );
 

@@ -47,10 +47,10 @@ const DialogTrigger = React.forwardRef<
 >(function DialogTrigger({ children, onClick, asChild, ...props }, ref) {
   const { onOpenChange } = useDialogContext();
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children as React.ReactElement<{ onClick?: React.MouseEventHandler }>, {
-      ref,
-      onClick: (e: React.MouseEvent) => {
-        (children as React.ReactElement<{ onClick?: React.MouseEventHandler }>).props.onClick?.(e);
+    const child = children as React.ReactElement<{ onClick?: React.MouseEventHandler<HTMLButtonElement> }>;
+    return React.cloneElement(child, {
+      onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
+        child.props.onClick?.(e);
         onClick?.(e);
         onOpenChange(true);
       },
@@ -67,23 +67,6 @@ const DialogPortal = ({ children }: { children: React.ReactNode }): React.ReactE
   if (typeof document === 'undefined') return <>{children}</>;
   return createPortal(children, document.body) as React.ReactElement;
 };
-
-const DialogOverlay = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(function DialogOverlay({ className, ...props }, ref) {
-  return (
-    <div
-      ref={ref}
-      className={cn(
-        'fixed inset-0 z-50 bg-black/50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
-        className
-      )}
-      data-state="open"
-      {...props}
-    />
-  );
-});
 
 const DialogContent = React.forwardRef<
   HTMLDivElement,

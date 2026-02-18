@@ -21,7 +21,7 @@ export function ColumnList({ boardId }: ColumnListProps): React.ReactElement {
     () =>
       columnOrder
         .map((id) => columns[id])
-        .filter(Boolean),
+        .filter((col): col is NonNullable<typeof col> => col != null),
     [columnOrder, columns]
   );
 

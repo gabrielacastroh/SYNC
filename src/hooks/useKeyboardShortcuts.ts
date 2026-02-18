@@ -9,7 +9,6 @@ export function useKeyboardShortcuts(): void {
   const { boardId } = useParams<{ boardId: string }>();
   const openCommandPalette = useUIStore((s) => s.openCommandPalette);
   const closeCommandPalette = useUIStore((s) => s.closeCommandPalette);
-  const selectedCardId = useUIStore((s) => s.selectedCardId);
   const setSelectedCard = useUIStore((s) => s.setSelectedCard);
   const setModalOpen = useUIStore((s) => s.setModalOpen);
 

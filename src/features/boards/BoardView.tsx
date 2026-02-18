@@ -11,7 +11,7 @@ import {
   type DragEndEvent,
 } from '@dnd-kit/core';
 import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
-import { ArrowLeft, LayoutGrid, History, Sun, Moon } from 'lucide-react';
+import { ArrowLeft, History, Sun, Moon } from 'lucide-react';
 import type { BoardId, ColumnId, CardId } from '@/types';
 import { useBoardsStore, useColumnsStore, useCardsStore } from '@/store';
 import { useActivityStore } from '@/store/activity';
@@ -20,7 +20,6 @@ import { Button } from '@/components/ui/button';
 import { ColumnList } from '@/features/columns/ColumnList';
 import { PresenceAvatars } from '@/features/presence/PresenceAvatars';
 import { ActivityPanel } from '@/features/activity/ActivityPanel';
-import { cn } from '@/utils/cn';
 
 export function BoardView(): React.ReactElement {
   const { boardId } = useParams<{ boardId: string }>();
@@ -41,7 +40,6 @@ export function BoardView(): React.ReactElement {
 
   const COLUMN_DRAG_PREFIX = 'col-';
   const columnIds = useMemo(() => new Set(columnOrder), [columnOrder]);
-  const cardIds = useMemo(() => new Set(Object.keys(cards)), [cards]);
 
   const updateBoard = useBoardsStore((s) => s.updateBoard);
 
@@ -76,10 +74,10 @@ export function BoardView(): React.ReactElement {
       const oldIndex = columnOrder.indexOf(activeColumnId);
       const newIndex = columnOrder.indexOf(overColumnId);
       if (oldIndex === -1 || newIndex === -1) return;
-      const next = [...columnOrder];
+      const next: ColumnId[] = [...columnOrder];
       const [removed] = next.splice(oldIndex, 1);
-      next.splice(newIndex, 0, removed);
-      reorderColumns(id, next);
+      next.splice(newIndex, 0, removed ?? ('' as ColumnId));
+      reorderColumns(id as BoardId, next);
       return;
     }
 
@@ -138,7 +136,7 @@ export function BoardView(): React.ReactElement {
       if (oldIndex === -1 || newIndex === -1) return;
       const next = [...fromCol.cardOrder];
       const [removed] = next.splice(oldIndex, 1);
-      next.splice(newIndex, 0, removed);
+      next.splice(newIndex, 0, removed ?? activeId);
       reorderCards(card.columnId, next);
     }
   };
