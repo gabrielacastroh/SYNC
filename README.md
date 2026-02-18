@@ -26,23 +26,23 @@ It is suitable as a portfolio piece or as a base for a real collaborative produc
 
 ```
 src/
-├── app/                 # App shell, globals, root layout
-├── features/            # Feature-based modules
-│   ├── boards/          # Board list, board view
-│   ├── columns/         # Column CRUD, reorder, collapse, menu
-│   ├── cards/           # Card CRUD, drag, detail modal, labels
-│   ├── activity/        # Activity timeline panel
-│   ├── presence/        # Presence avatars (simulated)
-│   └── command-palette/ # Cmd+K palette
+├── app/
+├── features/
+│   ├── boards/
+│   ├── columns/
+│   ├── cards/
+│   ├── activity/
+│   ├── presence/
+│   └── command-palette/
 ├── components/
-│   ├── ui/              # Button, Input, Card, Dialog, Tooltip, Avatar, Skeleton, Toast
-│   └── layout/          # AppShell
-├── store/               # Zustand slices (boards, columns, cards, activity, presence, ui) + persist
-├── hooks/               # usePersistSync, useThemeSync, useKeyboardShortcuts
-├── services/            # mockMembers, realtimeSimulation
-├── routes/              # React Router routes
-├── types/               # Domain types (Board, Column, Card, Activity, Presence, UI)
-└── utils/               # cn, storage, constants
+│   ├── ui/
+│   └── layout/
+├── store/
+├── hooks/
+├── services/
+├── routes/
+├── types/
+└── utils/
 ```
 
 - **Domain logic** lives in stores and services; **UI** in components and features.
